@@ -1,0 +1,12 @@
+proxy:
+  domains:
+    - qui-a-dit
+
+http:
+  document_root: public/
+  passthru: index.php
+  port: 8089
+
+workers:
+  proxy_start:
+    cmd: ['symfony', 'proxy:start']
