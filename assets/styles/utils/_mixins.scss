@@ -1,0 +1,14 @@
+@import "variables";
+@import "functions";
+
+@mixin shadow($x: 2px, $y: 2px, $radius: 5px, $color: black-rgba()){
+  box-shadow: $x $y $radius black-rgba(0.2);
+}
+
+@mixin border-bottom($with-shadow: false, $opacity: 0.5){
+  border-bottom: 1px solid black-rgba($opacity);
+
+  @if $with-shadow {
+    @include shadow()
+  }
+}

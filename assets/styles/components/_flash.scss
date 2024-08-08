@@ -1,0 +1,67 @@
+@import '../utils/variables';
+
+.flash{
+  z-index: 2000;
+
+  &-container{
+    border-radius: $border-radius;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 1;
+  }
+
+  &-message{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 2px 10px 2px 20px;
+    font-size: 1em;
+    color: white;
+  }
+
+  &-success{
+    border: 1px solid rgba(100, 100, 100, 0.3);
+    background-color: #4e8d6a;
+  }
+
+  &-danger{
+    border: 1px solid rgba(100, 100, 100, 0.3);
+    background-color: #852d2e;
+  }
+}
+
+#toast{
+  position: fixed;
+  z-index: 2000;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+
+  #toast-container{
+    padding: 0.2rem 1.5rem;
+    border-radius: $border-radius;
+
+    #toast-content{
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 2px 10px 2px 20px;
+      font-size: 1em;
+      color: white;
+      border-radius: 15px;
+    }
+  }
+
+  .success{
+    background-color: #4e8d6a;
+    border: 1px solid rgba(100, 100, 100, 0.3);
+  }
+
+  .error{
+    background-color: #852d2e;
+    border: 1px solid rgba(100, 100, 100, 0.3);
+  }
+}

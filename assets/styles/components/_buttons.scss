@@ -1,0 +1,28 @@
+@import "../utils/variables";
+@import "../utils/functions";
+
+.btn{
+  border: none;
+  border-radius: $border-radius;
+  padding: 0.1rem 0.7rem!important;
+  box-shadow: $main-shadow;
+  font-weight: 700;
+
+  &:hover{
+    box-shadow: $main-shadow-hover;
+  }
+}
+
+.btn-primary{
+  color: black-rgba(0.8)!important;
+}
+
+.btn-gradient-primary{
+  color: white;
+  background: $primary-gradient;
+}
+
+.btn-gradient-secondary{
+  color: white;
+  background: $secondary-gradient;
+}

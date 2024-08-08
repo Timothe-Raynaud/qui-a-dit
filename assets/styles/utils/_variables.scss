@@ -1,0 +1,22 @@
+$body: #F8F8FF;
+$background: #ffedbb73;
+
+$primary: #7ebdab;
+$secondary: #f57c51;
+
+$primary-gradient: linear-gradient(7deg, rgb(6 77 58) 0%, rgb(97 187 137) 100%);
+$secondary-gradient: linear-gradient(7deg, #002b3d 0%, #6e97bb 100%);
+
+// Shadow
+$main-shadow : 0 0 5px rgba(30, 30, 30, 0.5);
+$main-shadow-hover:  0 0 5px rgba(30, 30, 30, 0.5) inset;
+
+// Media size
+$media-large-desktop: "only screen and (max-width : 1240px)";
+$media-desktop: "only screen and (max-width : 1024px)";
+$media-tablet: "only screen and (max-width : 768px)";
+$media-mobile: "only screen and (max-width : 600px)";
+$media-mobile-sm: "only screen and (max-width : 480px)";
+
+// Border
+$border-radius: 0.3rem;

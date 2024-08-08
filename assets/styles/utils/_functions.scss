@@ -1,0 +1,13 @@
+@import "variables";
+
+@function primary-rgba($opacity: 0.5) {
+  @return rgba(126, 189, 171, $opacity);
+}
+
+@function secondary-rgba($opacity: 0.5) {
+  @return rgba(245, 124, 81, $opacity);
+}
+
+@function black-rgba($opacity: 0.5) {
+  @return rgba(30, 30, 30, $opacity);
+}
