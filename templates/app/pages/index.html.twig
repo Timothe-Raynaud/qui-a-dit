@@ -3,4 +3,12 @@
 {% block title %}{{ siteName }}{% endblock %}
 {% block main_attribute %} class="container"{% endblock %}
 {% block main %}
+    <div>
+        {% set division = categories|length %}
+        {% for category in categories %}
+            <a>
+                {{ category.name }}
+            </a>
+        {% endfor %}
+    </div>
 {% endblock %}

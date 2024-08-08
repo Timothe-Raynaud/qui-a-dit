@@ -1,6 +1,6 @@
 proxy:
   domains:
-    - qui-a-dit
+    - kiadi
 
 http:
   document_root: public/

@@ -6,7 +6,9 @@ use App\Entity\Category;
 use App\Entity\Quote;
 use App\Repository\CategoryRepository;
 use App\Repository\QuoteRepository;
+use App\Service\DatabaseService;
 use App\Service\FileService;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -20,7 +22,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
 #[AsCommand(name: 'app:quote:import', description: '...')]
 class ImportQuoteCommand extends Command
 {
-    public function __construct(private readonly FileService $fileService, private readonly ParameterBagInterface $parameterBag, private readonly KernelInterface $kernel, private readonly EntityManagerInterface $entityManager, private readonly CategoryRepository $categoryRepository, private readonly QuoteRepository $quoteRepository)
+    public function __construct(private readonly FileService $fileService, private readonly ParameterBagInterface $parameterBag, private readonly KernelInterface $kernel, private readonly EntityManagerInterface $entityManager, private readonly CategoryRepository $categoryRepository, private readonly QuoteRepository $quoteRepository, private readonly DatabaseService $databaseService)
     {
         parent::__construct();
     }
@@ -32,6 +34,9 @@ class ImportQuoteCommand extends Command
             ->addArgument('filename', InputArgument::REQUIRED, 'The file name.');
     }
 
+    /**
+     * @throws Exception
+     */
     protected function execute (InputInterface $input, OutputInterface $output): int
     {
         $filename = $input->getArgument('filename');
@@ -47,20 +52,36 @@ class ImportQuoteCommand extends Command
             $progress->start();
         }
 
+        $classes = [Quote::class, Category::class];
+        foreach ($classes as $class){
+            $this->databaseService->truncateTable($class);
+        }
+
         foreach ($data as $key => $row) {
-            $categoryName = $row['CATEGORIES'];
-            $quoteText = $row['QUOTE'];
-            $origin = $row['SOURCE'];
-            $gender = $row['GENDER'];
-            $hint = $row['HINT'];
+            $categoryName = trim($row['CATEGORIES']);
+            $quoteText = trim($row['QUOTE']);
+            $origin = trim($row['SOURCE']);
+            $gender = trim($row['GENDER']);
+            $hint = trim($row['HINT']);
+
+            // Slugify Category
+            $categorySlug = strtolower(str_replace(' ', '-', $categoryName));
+            $categorySlug = str_replace(',', '', $categorySlug);
+
+            if ($categoryName === '' || $quoteText === ''){
+                continue;
+            }
 
             $category = $this->categoryRepository->findOneBy(['name' => $categoryName]);
             if (!$category instanceof Category){
                 $category = new Category();
 
-                $category->setName($categoryName);
+                $category
+                    ->setSlug($categorySlug)
+                    ->setName($categoryName);
 
                 $this->entityManager->persist($category);
+                $this->entityManager->flush();
             }
 
             $quote = $this->quoteRepository->findOneBy(['text' => $quoteText]);
@@ -75,6 +96,7 @@ class ImportQuoteCommand extends Command
                     ->setGender($gender);
 
                 $this->entityManager->persist($quote);
+                $this->entityManager->flush();
             }
 
             // Display advancement
