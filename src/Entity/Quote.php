@@ -20,11 +20,14 @@ class Quote
     private ?string $origin = null;
 
     #[ORM\Column(length: 1020, nullable: true)]
-    private ?string $help = null;
+    private ?string $hint = null;
 
-    #[ORM\ManyToOne(inversedBy: 'quotes')]
+    #[ORM\ManyToOne(inversedBy: 'quotes',)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    #[ORM\Column(length: 30, nullable: true)]
+    private ?string $gender = null;
 
     public function getId(): ?int
     {
@@ -55,14 +58,14 @@ class Quote
         return $this;
     }
 
-    public function getHelp(): ?string
+    public function getHint(): ?string
     {
-        return $this->help;
+        return $this->hint;
     }
 
-    public function setHelp(?string $help): static
+    public function setHint(?string $hint): static
     {
-        $this->help = $help;
+        $this->hint = $hint;
 
         return $this;
     }
@@ -75,6 +78,18 @@ class Quote
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?string $gender): static
+    {
+        $this->gender = $gender;
 
         return $this;
     }

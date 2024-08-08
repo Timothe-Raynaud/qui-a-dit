@@ -21,7 +21,7 @@ class Category
     /**
      * @var Collection<int, Quote>
      */
-    #[ORM\OneToMany(targetEntity: Quote::class, mappedBy: 'category', fetch: "lazy", orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Quote::class, mappedBy: 'category', orphanRemoval: true)]
     private Collection $quotes;
 
     public function __construct()
