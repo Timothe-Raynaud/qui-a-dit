@@ -6,6 +6,7 @@
 parameters:
     site_name: 'Kiadi'
     depot_csv: '/public/uploads/import/'
+    import_key: '%env(IMPORT_KEY)%'
 
 services:
     # default configuration for services in *this* file
