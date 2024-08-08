@@ -22,7 +22,7 @@ class Quote
     #[ORM\Column(length: 1020, nullable: true)]
     private ?string $hint = null;
 
-    #[ORM\ManyToOne(inversedBy: 'quotes',)]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'quotes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 

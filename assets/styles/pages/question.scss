@@ -1,0 +1,16 @@
+@import "../utils/variables";
+
+.button-next{
+  display: inline-block;
+  margin-top: 5dvh;
+  border: solid 2px $primary;
+  font-size: 3rem;
+  padding: 1rem 1.5rem;
+  color: #4d5154;
+  border-radius: $border-radius;
+
+  &:hover{
+    background-color: $primary;
+    color: white;
+  }
+}

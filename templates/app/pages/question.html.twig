@@ -1,0 +1,22 @@
+{% extends 'app/_layout.html.twig' %}
+
+{% block title %}{{ siteName }}{% endblock %}
+
+{% block main %}
+    <div>
+        <div>
+            <p>"{{ quote.text }}"</p>
+            <p class="text-end"><small class="fs-1 border-top border-2 pt-2">{{ quote.origin }}</small></p>
+            {% if quote.hint is not null and quote.hint != "" %}
+                {{ dump(quote.hint) }}
+                <p>
+                    <b>Aide :</b> <i>{{ quote.hint }}</i>
+                </p>
+            {% endif %}
+        </div>
+
+        <div class="text-center">
+            <a href="{{ path('app_home') }}" class="button-next" >Suivant</a>
+        </div>
+    </div>
+{% endblock %}

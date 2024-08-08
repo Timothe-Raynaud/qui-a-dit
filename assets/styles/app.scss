@@ -1,6 +1,5 @@
 /* Utils */
 @import "utils/mixins";
-@import "utils/scrollbar";
 @import "utils/variables";
 
 /* Base */
@@ -19,6 +18,8 @@
 @import "layout/macros";
 
 /* Pages */
+@import "pages/home";
+@import "pages/question";
 
 /* library */
 @import "~bootstrap/scss/bootstrap";

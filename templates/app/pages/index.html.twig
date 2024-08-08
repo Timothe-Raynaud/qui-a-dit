@@ -1,14 +1,11 @@
 {% extends 'app/_layout.html.twig' %}
 
 {% block title %}{{ siteName }}{% endblock %}
-{% block main_attribute %} class="container"{% endblock %}
+
 {% block main %}
-    <div>
-        {% set division = categories|length %}
-        {% for category in categories %}
-            <a>
-                {{ category.name }}
-            </a>
-        {% endfor %}
-    </div>
+    {% for category in categories %}
+        <a href="{{ path('app_question', {'slug' : category.slug}) }}" class="btn-category">
+            {{ category.name }}
+        </a>
+    {% endfor %}
 {% endblock %}
