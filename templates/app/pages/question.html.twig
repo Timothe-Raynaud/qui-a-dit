@@ -5,11 +5,10 @@
 {% block main %}
     <div>
         <div>
-            <p>"{{ quote.text }}"</p>
+            <p><q>{{ quote.text|raw }}</q></p>
             <p class="text-end"><small class="fs-1 border-top border-2 pt-2">{{ quote.origin }}</small></p>
             {% if quote.hint is not null and quote.hint != "" %}
-                {{ dump(quote.hint) }}
-                <p>
+                <p class="help">
                     <b>Aide :</b> <i>{{ quote.hint }}</i>
                 </p>
             {% endif %}

@@ -1,5 +1,18 @@
 @import "../utils/variables";
 
+
+.quote-traduction{
+  font-style: oblique;
+  font-size: 2.7rem;
+  display: block;
+  line-height: 3.2rem;
+  margin-top: 2dvh;
+}
+
+.help{
+  font-size: 2.5rem;
+}
+
 .button-next{
   display: inline-block;
   margin-top: 5dvh;

@@ -40,7 +40,7 @@ class ImportQuoteCommand extends Command
     protected function execute (InputInterface $input, OutputInterface $output): int
     {
         $filename = $input->getArgument('filename');
-        $filepath = $this->kernel->getProjectDir() . $this->parameterBag->get('depot_csv') . $filename . '.csv';
+        $filepath = $this->kernel->getProjectDir() . $this->parameterBag->get('depot_csv') . $filename;
         $data = $this->fileService->csvConverter($filepath, ';');
 
         $size = count($data);
@@ -84,6 +84,7 @@ class ImportQuoteCommand extends Command
                 $this->entityManager->flush();
             }
 
+            $quoteText = str_replace(array('/', '(', ')'), array(' </br> ', '</q><q class="quote-traduction"> ', ''), $quoteText);
             $quote = $this->quoteRepository->findOneBy(['text' => $quoteText]);
             if (!$quote instanceof Quote){
                 $quote = new Quote();

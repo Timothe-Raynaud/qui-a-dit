@@ -32,12 +32,21 @@ class GameController extends AbstractController
 
         if (!empty($pastQuote[$category->getId()])){
             do {
+                if ($quotes === []){
+                    $quote = null;
+                    break;
+                }
                 $randId = array_rand($quotes);
                 $quote = $quotes[$randId];
-            } while (in_array($quote->getId(), $pastQuote[$category->getId()], true) && (!$quote instanceof Quote));
+                unset($quotes[$randId]);
+            } while (in_array($quote->getId(), $pastQuote[$category->getId()], true));
         } else{
             $randId = array_rand($quotes);
             $quote = $quotes[$randId];
+        }
+
+        if (!$quote instanceof Quote){
+            return $this->render('app/pages/no-more.html.twig');
         }
 
         $pastQuote[$category->getId()][] = $quote->getId();

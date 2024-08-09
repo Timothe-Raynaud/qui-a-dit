@@ -4,5 +4,10 @@
 
 {% block main %}
     {{ form_start(form) }}
+        {{ form_rest(form) }}
+
+        <div class="text-center">
+            <button class="button-next" >Importer</button>
+        </div>
     {{ form_end(form) }}
 {% endblock %}

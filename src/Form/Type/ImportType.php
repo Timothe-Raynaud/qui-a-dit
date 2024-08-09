@@ -12,8 +12,15 @@ class ImportType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('password', PasswordType::class)
-            ->add('photo', DropzoneType::class)// ...
+            ->add('password', PasswordType::class, [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Mot de passe'
+                ]
+            ])
+            ->add('file', DropzoneType::class, [
+                'label' => false,
+            ])
         ;
     }
 
