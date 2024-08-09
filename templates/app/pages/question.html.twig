@@ -3,6 +3,9 @@
 {% block title %}{{ siteName }}{% endblock %}
 
 {% block main %}
+
+    {% include 'app/pages/widgets/_help.html.twig' %}
+
     <div>
         <div>
             <p><q>{{ quote.text|raw }}</q></p>

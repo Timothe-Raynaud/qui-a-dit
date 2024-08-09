@@ -1,0 +1,41 @@
+@import "../utils/variables";
+
+.help-button-canvas{
+  position: absolute;
+  right: 3dvh;
+  top: 4dvh;
+  border: solid 1px #c2bdbd;
+  color: #605d5d;
+  padding: 1rem 2.7rem;
+  border-radius: 50%;
+}
+
+.modal-dialog{
+  max-width: unset!important;
+  width: 75%!important;
+
+  .modal-content{
+    background-color: #f1f0de!important;
+
+    .modal-body{
+      padding: 3dvh 2dvh 3dvh 2dvh!important;
+      position: relative;
+
+      .btn-close{
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+      }
+
+      h3{
+        font-size: 3rem;
+        margin-top: 3rem;
+      }
+
+      p{
+        margin-top: 1rem;
+        font-size: 2rem;
+      }
+    }
+  }
+}
